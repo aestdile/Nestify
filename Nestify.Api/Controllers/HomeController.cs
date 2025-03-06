@@ -15,6 +15,8 @@ namespace Nestify.Api.Controllers
     {
         [HttpGet]
         public ActionResult<string> Get() =>
-            Ok("Welcome here!");
+            Ok("Residental Training Software!");
+
     }
 }
+
