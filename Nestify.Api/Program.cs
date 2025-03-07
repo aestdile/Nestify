@@ -1,7 +1,7 @@
-//=============================
-// Copyright (c) Coalition of Good-Hearted Engineers
-// Free To Use Comfort and Peace
-//=============================
+//===================================
+// Welcome Aestdile Startup Company
+// Residental Training Software
+//===================================
 
 
 using Microsoft.AspNetCore.Hosting;
