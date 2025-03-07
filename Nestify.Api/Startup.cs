@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using Nestify.Api.Brokers.Storages;
 
 
 namespace Nestify.Api
@@ -30,6 +31,8 @@ namespace Nestify.Api
                 Title = "Nestify.Api",
                 Version = "v1"
             };
+
+            services.AddDbContext<StorageBroker>();
 
             services.AddControllers();
 
