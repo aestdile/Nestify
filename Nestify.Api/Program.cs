@@ -1,7 +1,7 @@
-//===================================
-// Welcome Aestdile Startup Company
+//==================================================
+// Welcome! I'm Mukhtor C#.Net Junior Developer
 // Residental Training Software
-//===================================
+//==================================================
 
 
 using Microsoft.AspNetCore.Hosting;
