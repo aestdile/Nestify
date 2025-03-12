@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using EFxceptions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using Nestify.Api.Models.Foundations.Guests;
 
 namespace Nestify.Api.Brokers.Storages
@@ -17,6 +18,14 @@ namespace Nestify.Api.Brokers.Storages
     {
         private readonly IConfiguration configuration;
 
+        private readonly ILogger<StorageBroker> logger;
+
+        public StorageBroker(IConfiguration configuration, ILogger<StorageBroker> logger)
+        {
+            this.configuration = configuration;
+            this.Database.Migrate();
+            this.logger = logger;
+        }
         public StorageBroker(IConfiguration configuration)
         {
             this.configuration = configuration;
