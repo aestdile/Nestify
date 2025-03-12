@@ -10,7 +10,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Nestify.Api.Brokers.Loggings
 {
-    public class LoggingBreaker
+    public class LoggingBreaker : ILoggingBroker
     {
         private readonly ILogger<LoggingBreaker> logger;
 
