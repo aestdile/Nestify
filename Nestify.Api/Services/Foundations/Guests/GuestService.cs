@@ -20,8 +20,5 @@ namespace Nestify.Api.Services.Foundations.Guests
         public async ValueTask<Guest> AddGuestAsync(Guest guest) =>
             await this.storageBroker.InsertGuestAsync(guest);
 
-           
-
-
     }
 }
