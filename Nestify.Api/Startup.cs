@@ -73,11 +73,6 @@ namespace Nestify.Api
         {
             services.AddTransient<IStorageBroker, StorageBroker>();
             services.AddTransient<ILoggingBroker, LoggingBreaker>();
-        }
-
-
-
-
-        
+        }  
     }
 }
