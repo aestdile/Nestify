@@ -12,8 +12,6 @@ namespace Nestify.Api.Models.Foundations.Guests.Exceptions
         public GuestValidationException(Xeption innerException)
             : base(message: "Guest validation error occured, fix the errors and try again",
                   innerException)
-        {
-
-        }
+        {}
     }
 }

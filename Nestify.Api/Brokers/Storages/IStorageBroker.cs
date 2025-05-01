@@ -6,8 +6,7 @@
 
 
 
-namespace Nestify.Api.Brokers.Storages
-{
-    public partial interface IStorageBroker
-    {}
-}
+namespace Nestify.Api.Brokers.Storages;
+
+public partial interface IStorageBroker
+{}

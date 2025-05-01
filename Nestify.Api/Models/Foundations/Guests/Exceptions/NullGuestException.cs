@@ -11,9 +11,8 @@ namespace Nestify.Api.Models.Foundations.Guests.Exceptions
 {
     public class NullGuestException : Xeption
     {
-        public NullGuestException() : base(message: "The guest is null.") 
-        {
-            
-        }
+        public NullGuestException() 
+            : base(message: "The guest is null.") 
+        {}
     }
 }

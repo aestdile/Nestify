@@ -27,7 +27,6 @@ namespace Nestify.Api.Tests.Unit.Services.Foundations.Guests
                 storageBroker: this.storageBrokerMock.Object);
         }
 
-
         private static Guest CreateRandomGuest() =>
             CreateGuestFiller(date: GetRandomDateTimeOffset()).Create();
 
@@ -43,8 +42,5 @@ namespace Nestify.Api.Tests.Unit.Services.Foundations.Guests
 
             return filler;
         }
-
-
-
     }
 }

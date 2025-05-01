@@ -7,6 +7,7 @@ using Nestify.Api.Models.Foundations.Guests;
 using Nestify.Api.Models.Foundations.Guests.Exceptions;
 using Xunit;
 
+
 namespace Nestify.Api.Tests.Unit.Services.Foundations.Guests
 {
     public partial class GuestServiceTests
