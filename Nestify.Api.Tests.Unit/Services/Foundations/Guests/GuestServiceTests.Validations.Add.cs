@@ -3,6 +3,7 @@
 // Residental Training Software
 //==================================================
 
+using Moq;
 using Nestify.Api.Models.Foundations.Guests;
 using Nestify.Api.Models.Foundations.Guests.Exceptions;
 using Xunit;
@@ -30,6 +31,10 @@ namespace Nestify.Api.Tests.Unit.Services.Foundations.Guests
             // then
             await Assert.ThrowsAsync<GuestValidationException>(() =>
                 addGuestTask.AsTask());
+
+            this.storageBrokerMock.Verify(broker =>
+                broker.InsertGuestAsync(It.IsAny<Guest>()),
+                Times.Never);
         }
     }
 }
