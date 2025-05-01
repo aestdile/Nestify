@@ -4,13 +4,13 @@
 //==================================================
 
 
-using System;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using Nestify.Api.Brokers.Loggings;
 using Nestify.Api.Brokers.Storages;
 
 
@@ -20,7 +20,6 @@ namespace Nestify.Api
     {
         public Startup(IConfiguration configuration) =>
            Configuration = configuration;
-
 
         public IConfiguration Configuration { get; }
 
@@ -34,7 +33,8 @@ namespace Nestify.Api
 
             services.AddControllers();
             services.AddDbContext<StorageBroker>();
-            services.AddTransient<IStorageBroker, StorageBroker>();
+            AddBrokers(services);
+
             services.AddSwaggerGen(options =>
             {
                 options.SwaggerDoc(
@@ -64,5 +64,11 @@ namespace Nestify.Api
             app.UseEndpoints(endpoints =>
                 endpoints.MapControllers());
         }
+
+        private static void AddBrokers(IServiceCollection services)
+        {
+            services.AddTransient<IStorageBroker, StorageBroker>();
+            services.AddTransient<ILoggingBroker, LoggingBreaker>();
+        }  
     }
 }
