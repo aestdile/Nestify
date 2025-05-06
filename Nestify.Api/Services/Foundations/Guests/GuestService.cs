@@ -12,39 +12,24 @@ using Nestify.Api.Models.Foundations.Guests.Exceptions;
 
 namespace Nestify.Api.Services.Foundations.Guests
 {
-    public class GuestService : IGuestService
+    public partial class GuestService : IGuestService
     {
         private readonly IStorageBroker storageBroker;
         private readonly ILoggingBroker loggingBroker;
 
         public GuestService(
-            IStorageBroker storageBroker, 
+            IStorageBroker storageBroker,
             ILoggingBroker loggingBroker)
         {
             this.storageBroker = storageBroker;
             this.loggingBroker = loggingBroker;
         }
-        public async ValueTask<Guest> AddGuestAsync(Guest guest)
+        public ValueTask<Guest> AddGuestAsync(Guest guest) =>
+        TryCatch(async () =>
         {
-            try
-            {
-                if (guest is null)
-                {
-                    throw new NullGuestException();
-                }
+            ValidateGuestNotNull(guest);
 
-                return await this.storageBroker.InsertGuestAsync(guest);
-            }
-            catch (NullGuestException nullGuestException)
-            {
-                var guestValidationException =
-                    new GuestValidationException(nullGuestException);
-
-                this.loggingBroker.LogError(guestValidationException);
-
-                throw guestValidationException;
-            }
-        }
-
+            return await this.storageBroker.InsertGuestAsync(guest);
+        });
     }
 }
