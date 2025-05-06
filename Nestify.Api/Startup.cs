@@ -1,7 +1,8 @@
 //==================================================
-// Welcome! I'm Mukhtor C#.Net Junior Developer
-// Residental Training Software
+// Copyright(c) Coalition of Good-Hearted-Engineers
+// Free To Use To Find Comfort and Peace
 //==================================================
+
 
 
 using Microsoft.AspNetCore.Builder;
@@ -10,7 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using Nestify.Api.Brokers.Loggings;
+using Nestify.Api.Brokers.Loggings.ILoggingBroker;
 using Nestify.Api.Brokers.Storages;
 
 
@@ -68,7 +69,7 @@ namespace Nestify.Api
         private static void AddBrokers(IServiceCollection services)
         {
             services.AddTransient<IStorageBroker, StorageBroker>();
-            services.AddTransient<ILoggingBroker, LoggingBreaker>();
-        }  
+            services.AddTransient<ILoggingBroker, LoggingBroker>();
+        }
     }
 }
