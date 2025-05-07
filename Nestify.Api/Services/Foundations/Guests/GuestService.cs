@@ -4,27 +4,32 @@
 // Residental Training Software
 //==================================================
 
-using System;
 using System.Threading.Tasks;
+using Nestify.Api.Brokers.Loggings.ILoggingBroker;
 using Nestify.Api.Brokers.Storages;
 using Nestify.Api.Models.Foundations.Guests;
 using Nestify.Api.Models.Foundations.Guests.Exceptions;
 
 namespace Nestify.Api.Services.Foundations.Guests
 {
-    public class GuestService: IGuestService
+    public partial class GuestService : IGuestService
     {
         private readonly IStorageBroker storageBroker;
+        private readonly ILoggingBroker loggingBroker;
 
-        public GuestService(IStorageBroker storageBroker) =>
-            this.storageBroker = storageBroker;
-        public async ValueTask<Guest> AddGuestAsync(Guest guest)
+        public GuestService(
+            IStorageBroker storageBroker,
+            ILoggingBroker loggingBroker)
         {
-            if (guest is null)
-                throw new GuestValidationException(new NullGuestException());
+            this.storageBroker = storageBroker;
+            this.loggingBroker = loggingBroker;
+        }
+        public ValueTask<Guest> AddGuestAsync(Guest guest) =>
+        TryCatch(async () =>
+        {
+            ValidateGuestNotNull(guest);
 
             return await this.storageBroker.InsertGuestAsync(guest);
-        }
-
+        });
     }
 }
