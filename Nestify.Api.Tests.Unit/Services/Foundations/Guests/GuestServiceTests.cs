@@ -63,10 +63,9 @@ namespace Nestify.Api.Tests.Unit.Services.Foundations.Guests
         private Expression<Func<Xeption, bool>> SameExceptionAs(Xeption expectedException)
         {
             return actualException =>
-            actualException.Message == expectedException.Message
-            && actualException.InnerException.Message == expectedException.InnerException.Message
-            && (actualException.InnerException as Xeption).DataEquals(expectedException.InnerException.Data);
+                actualException.SameExceptionAs(expectedException);
         }
+        
 
         private static Filler<Guest> CreateGuestFiller(DateTimeOffset date)
         {
