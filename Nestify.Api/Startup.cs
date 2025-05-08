@@ -13,6 +13,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Nestify.Api.Brokers.Loggings.ILoggingBroker;
 using Nestify.Api.Brokers.Storages;
+using Nestify.Api.Services.Foundations.Guests;
 
 
 namespace Nestify.Api
@@ -35,6 +36,7 @@ namespace Nestify.Api
             services.AddControllers();
             services.AddDbContext<StorageBroker>();
             AddBrokers(services);
+            AddFoundationServices(services);
 
             services.AddSwaggerGen(options =>
             {
@@ -70,6 +72,11 @@ namespace Nestify.Api
         {
             services.AddTransient<IStorageBroker, StorageBroker>();
             services.AddTransient<ILoggingBroker, LoggingBroker>();
+        }
+
+        private static void AddFoundationServices(IServiceCollection services)
+        {
+            services.AddTransient<IGuestService, GuestService>();
         }
     }
 }
