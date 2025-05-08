@@ -13,6 +13,7 @@ namespace Nestify.Api.Tests.Unit.Services.Foundations.Guests
 {
     public partial class GuestServiceTests
     {
+        [Fact]
         public async Task ShouldThrowCriticalDependencyExceptionOnAddIfSqlErrorOccursAndLogItAsync()
         {
             // given
@@ -32,7 +33,7 @@ namespace Nestify.Api.Tests.Unit.Services.Foundations.Guests
                 this.guestService.AddGuestAsync(someGuest);
 
             // then
-            await Assert.ThrowsAsync<GuestDependencyException>(async () =>
+            await Assert.ThrowsAsync<GuestDependencyException>(() =>
                 addGuestTask.AsTask());
 
             this.storageBrokerMock.Verify(broker =>
