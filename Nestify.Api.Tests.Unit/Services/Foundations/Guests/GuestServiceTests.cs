@@ -3,8 +3,9 @@
 // Residental Training Software
 //==================================================
 
-using System.Data.OleDb;
 using System.Linq.Expressions;
+using System.Runtime.Serialization;
+using Microsoft.Data.SqlClient;
 using Moq;
 using Nestify.Api.Brokers.Loggings.ILoggingBroker;
 using Nestify.Api.Brokers.Storages;
@@ -40,6 +41,9 @@ namespace Nestify.Api.Tests.Unit.Services.Foundations.Guests
         private static int GetRandomNumber() =>
             new IntRange(min: 2, max: 9).GetValue();
 
+        private static SqlException GetSqlError() =>
+            (SqlException)FormatterServices.GetUninitializedObject(typeof(SqlException));
+
         private static T GetInvalidEnum<T>()
         {
             int randomNumber = GetRandomNumber();
@@ -49,7 +53,7 @@ namespace Nestify.Api.Tests.Unit.Services.Foundations.Guests
                 randomNumber = GetRandomNumber();
             }
 
-            return (T)(object) randomNumber;
+            return (T)(object)randomNumber;
         }
 
 
