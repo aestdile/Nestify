@@ -7,6 +7,7 @@ using Moq;
 using Nestify.Api.Models.Foundations.Guests;
 using Nestify.Api.Models.Foundations.Guests.Exceptions;
 using Xunit;
+using Xunit.Sdk;
 
 
 namespace Nestify.Api.Tests.Unit.Services.Foundations.Guests
@@ -35,6 +36,76 @@ namespace Nestify.Api.Tests.Unit.Services.Foundations.Guests
             this.storageBrokerMock.Verify(broker =>
                 broker.InsertGuestAsync(It.IsAny<Guest>()),
                 Times.Never);
+
+            this.loggingBrokerMock.Verify(broker =>
+                broker.LogError(It.Is(SameExceptionAs(expectedGuestValidationException))),
+                Times.Once);
+
+            this.loggingBrokerMock.VerifyNoOtherCalls();
+            this.storageBrokerMock.VerifyNoOtherCalls();
+        }
+
+        [Theory]
+        [InlineData(null)]
+        [InlineData("")]
+        [InlineData(" ")]
+        public async Task ShouldThrowValidationExceptionOnAddIfGuestIsInvalidAndLogItAsync(
+            string invalidText)
+        {
+            // given
+            var invalidGuest = new Guest
+            {
+                FirstName = invalidText
+            };
+
+            var invalidGuestException = new InvalidGuestException();
+
+            invalidGuestException.AddData(
+                key: nameof(Guest.Id),
+                values: "Id is required");
+
+            invalidGuestException.AddData(
+                key: nameof(Guest.FirstName),
+                values: "Text is required");
+
+            invalidGuestException.AddData(
+                key: nameof(Guest.LastName),
+                values: "Text is required");
+
+            invalidGuestException.AddData(
+                key: nameof(Guest.DateOfBirth),
+                values: "Data is required");
+
+            invalidGuestException.AddData(
+                key: nameof(Guest.Email),
+                values: "Text is required");
+
+            invalidGuestException.AddData(
+                key: nameof(Guest.Address),
+                values: "Text is required");
+
+            var expectedGuestValidationException =
+                new GuestValidationException(invalidGuestException);
+
+            // when
+            ValueTask<Guest> addGuestTask =
+                this.guestService.AddGuestAsync(invalidGuest);
+
+            // then
+            await Assert.ThrowsAsync<GuestValidationException>(() =>
+                addGuestTask.AsTask());
+
+            this.loggingBrokerMock.Verify(broker =>
+            broker.LogError(It.Is(SameExceptionAs(
+                expectedGuestValidationException))),
+                Times.Once);
+
+            this.storageBrokerMock.Verify(broker =>
+                broker.InsertGuestAsync(It.IsAny<Guest>()),
+                Times.Never);
+
+            this.loggingBrokerMock.VerifyNoOtherCalls();
+            this.storageBrokerMock.VerifyNoOtherCalls();
         }
     }
 }
