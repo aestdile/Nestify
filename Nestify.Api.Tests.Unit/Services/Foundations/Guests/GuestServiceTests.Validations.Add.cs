@@ -107,7 +107,8 @@ namespace Nestify.Api.Tests.Unit.Services.Foundations.Guests
             this.loggingBrokerMock.VerifyNoOtherCalls();
             this.storageBrokerMock.VerifyNoOtherCalls();
         }
-    
+
+        [Fact]
         private async Task ShouldThrowValidationExceptionOnAddIfGenderIsInvalidAndLogItAsync()
         {
             // given

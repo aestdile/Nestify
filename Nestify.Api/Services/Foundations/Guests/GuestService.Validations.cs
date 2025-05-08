@@ -17,7 +17,8 @@ namespace Nestify.Api.Services.Foundations.Guests
                 (Rule: IsInvalid(guest.LastName), Paramater: nameof(Guest.LastName)),
                 (Rule: IsInvalid(guest.DateOfBirth), Paramater: nameof(Guest.DateOfBirth)),
                 (Rule: IsInvalid(guest.Email), Paramater: nameof(Guest.Email)),
-                (Rule: IsInvalid(guest.Address), Paramater: nameof(Guest.Address))
+                (Rule: IsInvalid(guest.Address), Paramater: nameof(Guest.Address)),
+                (Rule: IsInvalid(guest.Gender), Paramater: nameof(Guest.Gender))
                 );
         }
         private void ValidateGuestNotNull(Guest guest)
@@ -46,7 +47,11 @@ namespace Nestify.Api.Services.Foundations.Guests
             Message = "Data is required"
         };
 
-
+        private static dynamic IsInvalid(GenderType gender) => new
+        {
+            Condition = Enum.IsDefined(gender) is false,
+            Message = "Value is invalid"
+        };
 
         private static void Validate(params (dynamic Rule, string Parameter)[] validations)
         {
