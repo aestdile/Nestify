@@ -1,0 +1,63 @@
+Nestify Themes
+
+1. Kirish
+2. Purposing, Modelling, Simulation
+3. API'ni ishga tushirish
+4. Code Review tushunchasi. U qanday qilinadi?
+5. Unit testlarni ishga tushirish
+6. Nega loyiha tuzish kerak
+7. Loyihani qurishni (build) qanday ishga tushirish mumkin?
+8. Broker va Guest Modeli
+9. Commit va PullRequest lar bilan ishlash
+10. Insert Guest Broker
+11. Code Rub
+12. Boshqalar Unit Testni qanday yozadi?(amaliy)
+13. Boshqalar Unit Testni qanday yozadi?(nazariy)
+14. Validatsiya haqida
+15. How to Commit Passing Test & Code Rub
+16. Kiritilgan NULL ma'lumotini tekshirish(1-qism)
+17. Log yozishning boshqalar ishlatadigan usuli
+18. Logging Broker tuzish(1-qism)
+19. Logging Broker tuzish(2-qism)
+20. Branchni sinxronizatsiya qilish
+21. Logging Broker'ni servisga qo'shish
+22. Null'ga tekshirish testini oxiriga yetkazish
+23. Unit Test'da mock'larni tartiblash
+24. Null parametrga tekshirish
+24. Try-Catch ni ishga solish. To'g'ri usuldagi validatsiya
+25. Nega Xeptions'ni ishlatish kerak
+26. Kiritilayotgan parametrlarni tekshirish(Fail)
+27. Kiritilayotgan parametrlarni tekshirish(Pass)
+28. Enum propni tekshirish(Fail)
+29. Enum propni tekshirish(Pass)
+30. SQL dagi xatoliklar bilan ishlash(Fail)
+31. SQL dagi xatoliklar bilan ishlash(Pass)
+32. Duplicate Key xatoligi bilan ishlash(Fail)
+33. Commit xabarni tahrirlash
+34. Duplicate Key xatoligi bilan ishlash(Pass)
+35. Service Error bilan ishlash(Fail)
+36. Service Error bilan ishlash(Pass)
+37. Kutubxonalarni upgrade qilish va Code Rub
+38. Christo Du Toit kodini tahlil qilish
+39. Boshqalar Controller'larni qaysi usulda yaratadi?
+40. Service'ni ro'yxatdan o'tkazish va CONFIG ko'rinishida commit qilish
+41. Standart Controller yaratish
+42. How to Cherry Pick & Reset changes
+43. Endi nima qilami?
+44. Tekshiruvdan o'tgan testlarni commit qilish va Code Rub
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
